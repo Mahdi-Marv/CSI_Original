@@ -9,7 +9,7 @@ def parse_args(default=False):
     parser.add_argument('--dataset', help='Dataset',
                         choices=['aptos','isic' , 'chest', 'brain','camelyon17' ,'cifar10', 'cifar100', 'imagenet'], type=str)
     parser.add_argument('--one_class_idx', help='None: multi-class, Not None: one-class',
-                        default=None, type=int)
+                        default=0, type=int)
     parser.add_argument('--model', help='Model',
                         choices=['resnet18', 'resnet18_imagenet'], type=str, default='resnet18')
     parser.add_argument('--mode', help='Training mode',
