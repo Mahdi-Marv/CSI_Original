@@ -42,6 +42,7 @@ P.ood_layer = P.ood_layer[0]
 ### Initialize dataset ###
 image_size_ = (P.image_size, P.image_size, 3)
 train_set, test_set, image_size, n_classes = get_dataset(P, dataset=P.dataset, image_size=image_size_)
+print(len(train_set))
 P.image_size = image_size
 P.n_classes = n_classes
 
