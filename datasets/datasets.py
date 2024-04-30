@@ -4,6 +4,7 @@ import numpy as np
 import torch
 from torch.utils.data.dataset import Subset
 from torchvision import datasets, transforms
+from custom_datasets import *
 
 from utils.utils import set_random_seed
 
@@ -138,6 +139,18 @@ def get_dataset(P, dataset, test_only=False, image_size=None, download=False, ev
         n_classes = 10
         train_set = datasets.CIFAR10(DATA_PATH, train=True, download=download, transform=train_transform)
         test_set = datasets.CIFAR10(DATA_PATH, train=False, download=download, transform=test_transform)
+    elif dataset == 'brain':
+        n_classes = 2
+        train_set = Brain(transform=train_transform, is_train=True)
+        test_set = Brain(transform=test_transform, is_train=False, test_id=P.test_id)
+    elif dataset == 'chest':
+        n_classes = 2
+        train_set = Chest(transform=train_transform, is_train=True)
+        test_set = Chest(transform=test_transform, is_train=False, test_id=P.test_id)
+    elif dataset == 'camelyon17':
+        n_classes = 2
+        train_set = Camelyon17(transform=train_transform, is_train=True)
+        test_set = Camelyon17(transform=test_transform, is_train=False, test_id=P.test_id)
 
     elif dataset == 'cifar100':
         image_size = (32, 32, 3)
@@ -242,7 +255,7 @@ def get_superclass_list(dataset):
     elif dataset == 'imagenet':
         return IMAGENET_SUPERCLASS
     else:
-        raise NotImplementedError()
+        return list(range(2))
 
 
 def get_subclass_dataset(dataset, classes):
