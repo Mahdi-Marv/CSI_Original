@@ -21,11 +21,12 @@ if torch.cuda.is_available():
 device = torch.device(f"cuda" if torch.cuda.is_available() else "cpu")
 
 ### Initialize dataset ###
+image_size_ = (P.image_size, P.image_size, 3)
 ood_eval = P.mode == 'ood_pre'
 if P.dataset == 'imagenet' and ood_eval:
     P.batch_size = 1
     P.test_batch_size = 1
-train_set, test_set, image_size, n_classes = get_dataset(P, dataset=P.dataset, eval=ood_eval, image_size=P.image_size)
+train_set, test_set, image_size, n_classes = get_dataset(P, dataset=P.dataset, eval=ood_eval, image_size=image_size_)
 
 P.image_size = image_size
 P.n_classes = n_classes
