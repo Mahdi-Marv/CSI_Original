@@ -4,7 +4,7 @@ import numpy as np
 import torch
 from torch.utils.data.dataset import Subset
 from torchvision import datasets, transforms
-from custom_datasets import *
+from datasets.custom_datasets import *
 
 from utils.utils import set_random_seed
 
