@@ -263,12 +263,15 @@ def get_subclass_dataset(dataset, classes):
         classes = [classes]
 
     indices = []
-    for idx, tgt in enumerate(dataset.targets):
-        if tgt in classes:
-            indices.append(idx)
-
-    dataset = Subset(dataset, indices)
-    return dataset
+    try:
+        for idx, tgt in enumerate(dataset.targets):
+            if tgt in classes:
+                indices.append(idx)
+    except:
+        # SVHN
+        for idx, (_, tgt) in enumerate(dataset):
+            if tgt in classes:
+                indices.append(idx)
 
 
 def get_simclr_eval_transform_imagenet(sample_num, resize_factor, resize_fix):
