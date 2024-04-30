@@ -6,7 +6,6 @@ from torch.utils.data.dataset import Subset
 from torchvision import datasets, transforms
 from torch.utils.data import DataLoader, Dataset
 from glob import glob
-from datasets.cutpast_transformation import *
 from PIL import Image
 from glob import glob
 import pickle
