@@ -48,6 +48,8 @@ P.n_classes = n_classes
 
 if P.one_class_idx is not None:
     cls_list = get_superclass_list(P.dataset)
+    print(cls_list)
+    print(cls_list[P.one_class_idx])
     P.n_superclasses = len(cls_list)
 
     full_test_set = deepcopy(test_set)  # test set of full classes
