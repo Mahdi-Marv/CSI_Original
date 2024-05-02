@@ -268,6 +268,7 @@ def get_subclass_dataset(dataset, classes):
     # print(dataset.test_label)
     try:
         for idx, tgt in enumerate(dataset.test_label):
+            print(idx, tgt)
             if tgt in classes:
                 indices.append(idx)
     except:
