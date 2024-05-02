@@ -263,7 +263,7 @@ def get_subclass_dataset(dataset, classes):
         classes = [classes]
 
     indices = []
-    print(len(dataset.test_label))
+    print('len test labels: ', len(dataset.test_label))
     # print(dataset.test_label)
     try:
         for idx, tgt in enumerate(dataset.test_label):
