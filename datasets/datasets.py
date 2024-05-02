@@ -263,12 +263,9 @@ def get_subclass_dataset(dataset, classes):
         classes = [classes]
 
     indices = []
-    print('len test labels: ', len(dataset.test_label))
-    print('classes', classes)
-    # print(dataset.test_label)
+
     try:
         for idx, tgt in enumerate(dataset.test_label):
-            print(idx, tgt)
             if tgt in classes:
                 indices.append(idx)
     except:
@@ -276,7 +273,7 @@ def get_subclass_dataset(dataset, classes):
         for idx, (_, tgt) in enumerate(dataset):
             if tgt in classes:
                 indices.append(idx)
-
+    return indices
 
 def get_simclr_eval_transform_imagenet(sample_num, resize_factor, resize_fix):
 
