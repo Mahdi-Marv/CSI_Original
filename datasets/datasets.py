@@ -273,7 +273,8 @@ def get_subclass_dataset(dataset, classes):
         for idx, (_, tgt) in enumerate(dataset):
             if tgt in classes:
                 indices.append(idx)
-    return indices
+    dataset = Subset(dataset, indices)
+    return dataset
 
 def get_simclr_eval_transform_imagenet(sample_num, resize_factor, resize_fix):
 
