@@ -100,7 +100,6 @@ class RandomResizedCropLayer(nn.Module):
         # print(self.size)
         # print(output.shape)
         if self.size is not None:
-            print('reached avg pool')
             output = F.adaptive_avg_pool2d(output, (224, 224))
 
         return output
