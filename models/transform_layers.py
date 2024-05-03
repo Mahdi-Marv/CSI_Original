@@ -101,7 +101,7 @@ class RandomResizedCropLayer(nn.Module):
         print(output.shape)
         if self.size is not None:
             # Correct usage assuming you want to maintain 224x224 size
-            output = F.adaptive_avg_pool2d(output, (224, 224))
+            output = F.adaptive_avg_pool2d(output, (3, 224, 224))
 
         return output
 
