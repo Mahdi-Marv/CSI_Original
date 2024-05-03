@@ -29,7 +29,7 @@ import shutil
 import random
 import zipfile
 import time
-import gdown
+
 
 class Camelyon17(Dataset):
     def __init__(self, transform, is_train=True, test_id=1):
