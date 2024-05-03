@@ -81,12 +81,18 @@ class Camelyon17(Dataset):
     def __len__(self):
         return len(self.image_paths)
 class Brain(Dataset):
-    def __init__(self, transform, is_train=True, test_id=1):
+    def __init__(self, transform, is_train=True, test_id=1, brats=0):
         print('brain dataset')
         self.is_train = is_train
         self.transform = transform
         if is_train:
             self.image_paths = glob('./Br35H/dataset/train/normal/*')
+            brats_mod = glob('./brats/dataset/train/normal/*')
+            random.seed(1)
+            if brats > 0:
+                random_brats_images = random.sample(brats_mod, brats)
+                self.image_paths.extend(random_brats_images)
+                print(f'added {brats} to train set')
             self.test_label = [0] * len(self.image_paths)
         else:
             if test_id==1:

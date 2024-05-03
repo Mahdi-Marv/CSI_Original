@@ -141,7 +141,7 @@ def get_dataset(P, dataset, test_only=False, image_size=None, download=False, ev
         test_set = datasets.CIFAR10(DATA_PATH, train=False, download=download, transform=test_transform)
     elif dataset == 'brain':
         n_classes = 2
-        train_set = Brain(transform=train_transform, is_train=True)
+        train_set = Brain(transform=train_transform, is_train=True, brats=P.brats)
         test_set = Brain(transform=test_transform, is_train=False, test_id=P.test_id)
     elif dataset == 'chest':
         n_classes = 2

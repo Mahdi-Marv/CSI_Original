@@ -35,7 +35,7 @@ def parse_args(default=False):
     parser.add_argument('--error_step', help='Epoch steps to compute errors',
                         default=5, type=int)
     parser.add_argument('--save_step', help='Epoch steps to save models',
-                        default=2, type=int)
+                        default=10, type=int)
 
     ##### Training Configurations #####
     parser.add_argument('--epochs', help='Epochs',
@@ -84,6 +84,7 @@ def parse_args(default=False):
                         action='store_true')
     parser.add_argument("--save_score", help='save ood score for plotting histogram',
                         action='store_true')
+    parser.add_argument('--brats', default=0, type=int)
 
     if default:
         return parser.parse_args('')  # empty string
