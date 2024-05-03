@@ -229,7 +229,7 @@ class Aptos(Dataset):
 
 class Isic(Dataset):
     def __init__(self, transform, is_train=True, test_id=1):
-        print('brain dataset')
+        print('isic dataset')
         self.is_train = is_train
         self.transform = transform
         if is_train:

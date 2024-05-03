@@ -151,6 +151,10 @@ def get_dataset(P, dataset, test_only=False, image_size=None, download=False, ev
         n_classes = 2
         train_set = Aptos(transform=train_transform, is_train=True)
         test_set = Aptos(transform=test_transform, is_train=False, test_id=P.test_id)
+    elif dataset == 'isic':
+        n_classes = 2
+        train_set = Isic(transform=train_transform, is_train=True)
+        test_set = Isic(transform=test_transform, is_train=False, test_id=P.test_id)
     elif dataset == 'camelyon17':
         n_classes = 2
         train_set = Camelyon17(transform=train_transform, is_train=True)
