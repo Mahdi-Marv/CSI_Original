@@ -163,6 +163,12 @@ def get_dataset(P, dataset, test_only=False, image_size=None, download=False, ev
         n_classes = 2
         train_set = Chest(transform=train_transform, is_train=True)
         test_set = Chest(transform=test_transform, is_train=False, test_id=P.test_id)
+    elif dataset == 'waterbird':
+        n_classes = 2
+        train_set = get_waterbird_trainset(train_transform)
+        test_set = get_waterbird_test_set(test_transform)
+        if P.test_id == 2:
+            test_set = get_waterbird_just_test_shifted(test_transform)
 
 
     elif dataset == 'cifar100':

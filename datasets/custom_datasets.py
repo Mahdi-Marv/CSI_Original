@@ -271,16 +271,10 @@ class Isic(Dataset):
 
 class Waterbird(Dataset):
     def __init__(self, train=True, count_train_landbg=-1, count_train_waterbg=-1, mode='bg_all',
-                 count=-1,
+                 count=-1, transform = None,
                  copy=False):
-        use_imagenet = True
-        val_transforms_list = [
-            transforms.Resize((384, 384)) if use_imagenet else transforms.Resize((224, 224)),
-            transforms.ToTensor(),
-            transforms.Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5])
-        ]
-        val_transforms = Compose(val_transforms_list)
-        self.transform = val_transforms
+
+        self.transform = transform
 
         root = '/kaggle/input/waterbird/waterbird'
         df = pd.read_csv(os.path.join(root, 'metadata.csv'))
@@ -349,4 +343,15 @@ class Waterbird(Dataset):
 
     def __len__(self):
         return len(self.image_paths)
+
+def get_waterbird_trainset(transform):
+    train_set = Waterbird(train=True, count_train_landbg=3500, count_train_waterbg=100, mode='bg_all', transform=transform)
+    return train_set
+def get_waterbird_test_set(transform):
+    test_set = Waterbird(train=False, count_train_landbg=3500, count_train_waterbg=100, mode='bg_land', transform=transform)
+    return test_set
+
+def get_waterbird_just_test_shifted(transform):
+    test_set = Waterbird(train=False, count_train_landbg=3500, count_train_waterbg=100, mode='bg_water', transform=transform)
+    return test_set
 
