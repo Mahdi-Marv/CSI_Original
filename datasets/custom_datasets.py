@@ -215,7 +215,7 @@ class Mnist(Dataset):
                 self.labels = [0] * len(normal_test['images']) + [1] * len(abnormal_test['images'])
     def __getitem__(self, idx):
         img = self.images[idx]
-        img = img.transpose(1, 2, 0)
+        img = Image.fromarray(img.transpose(1, 2, 0))
         if self.transform is not None:
             img = self.transform(img)
         if self.is_train:
