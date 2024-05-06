@@ -223,7 +223,7 @@ class Mnist(Dataset):
         else:
             return img, self.labels[idx]
     def __len__(self):
-        return len(self.image_paths)
+        return len(self.images)
 
 class Aptos(Dataset):
     def __init__(self, transform, is_train=True, test_id=1):
