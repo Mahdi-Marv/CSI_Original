@@ -140,27 +140,19 @@ class Chest(Dataset):
             self.image_paths = glob('/kaggle/working/train/normal/*')
             self.test_label = [0] * len(self.image_paths)
         else:
-            test_normal_path = glob('/kaggle/working/test/normal/*')
-            test_anomaly_path = glob('/kaggle/working/test/anomaly/*')
+            if test_id == 1:
+                test_normal_path = glob('/kaggle/working/test/normal/*')
+                test_anomaly_path = glob('/kaggle/working/test/anomaly/*')
 
-            self.image_paths = test_normal_path + test_anomaly_path
-            self.test_label = [0] * len(test_normal_path) + [1] * len(test_anomaly_path)
-
-            if self.test_id == 2:
-                shifted_test_normal_path = glob('/kaggle/working/4. Operations Department/Test/1/*')
-                shifted_test_anomaly_path = (glob('/kaggle/working/4. Operations Department/Test/0/*') + glob(
-                    '/kaggle/working/4. Operations Department/Test/2/*') +
-                                             glob('/kaggle/working/4. Operations Department/Test/3/*'))
-
-                self.image_paths = shifted_test_normal_path + shifted_test_anomaly_path
-                self.test_label = [0] * len(shifted_test_normal_path) + [1] * len(shifted_test_anomaly_path)
-
-            if self.test_id == 3:
+                self.image_paths = test_normal_path + test_anomaly_path
+                self.test_label = [0] * len(test_normal_path) + [1] * len(test_anomaly_path)
+            else:
                 test_normal_path = glob('/kaggle/working/chest_xray/test/NORMAL/*')
                 test_anomaly_path = glob('/kaggle/working/chest_xray/test/PNEUMONIA/*')
 
                 self.image_paths = test_normal_path + test_anomaly_path
                 self.test_label = [0] * len(test_normal_path) + [1] * len(test_anomaly_path)
+
 
 
     def __len__(self):

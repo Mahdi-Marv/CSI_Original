@@ -159,10 +159,6 @@ def get_dataset(P, dataset, test_only=False, image_size=None, download=False, ev
         n_classes = 2
         train_set = Camelyon17(transform=train_transform, is_train=True)
         test_set = Camelyon17(transform=test_transform, is_train=False, test_id=P.test_id)
-    elif dataset == 'chest':
-        n_classes = 2
-        train_set = Chest(transform=train_transform, is_train=True)
-        test_set = Chest(transform=test_transform, is_train=False, test_id=P.test_id)
     elif dataset == 'waterbird':
         n_classes = 2
         train_set = get_waterbird_trainset(train_transform)
