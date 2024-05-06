@@ -155,6 +155,10 @@ def get_dataset(P, dataset, test_only=False, image_size=None, download=False, ev
         n_classes = 2
         train_set = Isic(transform=train_transform, is_train=True)
         test_set = Isic(transform=test_transform, is_train=False, test_id=P.test_id)
+    elif dataset == 'mnist':
+        n_classes = 2
+        train_set = Mnist(transform=train_transform, is_train=True)
+        test_set = Mnist(transform=test_transform, is_train=False, test_id=P.test_id)
     elif dataset == 'camelyon17':
         n_classes = 2
         train_set = Camelyon17(transform=train_transform, is_train=True)

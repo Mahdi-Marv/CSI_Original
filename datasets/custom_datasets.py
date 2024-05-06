@@ -181,6 +181,49 @@ class Chest(Dataset):
             return img, 0
         else :
             return img, self.test_label[idx]
+class Mnist(Dataset):
+    def __init__(self, transform, is_train=True, test_id=1):
+        self.is_train = is_train
+        self.transform = transform
+
+        if is_train:
+            with open('./content/mnist_shifted_dataset/train_normal.pkl', 'rb') as f:
+                normal_train = pickle.load(f)
+            self.images = normal_train['images']
+            self.images = random.sample(self.images, 1400)
+            self.labels = [0] * len(self.images)
+        else:
+            if test_id == 1:
+                with open('./content/mnist_shifted_dataset/test_normal_main.pkl', 'rb') as f:
+                    normal_test = pickle.load(f)
+                with open('./content/mnist_shifted_dataset/test_abnormal_main.pkl', 'rb') as f:
+                    abnormal_test = pickle.load(f)
+
+                normal_test['images'] = random.sample(normal_test['images'], 500)
+                abnormal_test['images'] = random.sample(abnormal_test['images'], 500)
+
+                self.images = normal_test['images'] + abnormal_test['images']
+                self.labels = [0] * len(normal_test['images']) + [1] * len(abnormal_test['images'])
+            else:
+                with open('./content/mnist_shifted_dataset/test_normal_shifted.pkl', 'rb') as f:
+                    normal_test = pickle.load(f)
+                with open('./content/mnist_shifted_dataset/test_abnormal_shifted.pkl', 'rb') as f:
+                    abnormal_test = pickle.load(f)
+                normal_test['images'] = random.sample(normal_test['images'], 500)
+                abnormal_test['images'] = random.sample(abnormal_test['images'], 500)
+                self.images = normal_test['images'] + abnormal_test['images']
+                self.labels = [0] * len(normal_test['images']) + [1] * len(abnormal_test['images'])
+    def __getitem__(self, idx):
+        img = self.images[idx]
+        img = img.transpose(1, 2, 0)
+        if self.transform is not None:
+            img = self.transform(img)
+        if self.is_train:
+            return img, 0
+        else:
+            return img, self.labels[idx]
+    def __len__(self):
+        return len(self.image_paths)
 
 class Aptos(Dataset):
     def __init__(self, transform, is_train=True, test_id=1):

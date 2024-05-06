@@ -7,7 +7,7 @@ def parse_args(default=False):
     parser = ArgumentParser(description='Pytorch implementation of CSI')
 
     parser.add_argument('--dataset', help='Dataset',
-                        choices=['waterbird', 'aptos','isic' , 'chest', 'brain','camelyon17' ,'cifar10', 'cifar100', 'imagenet'], type=str)
+                        choices=['mnist', 'waterbird', 'aptos','isic' , 'chest', 'brain','camelyon17' ,'cifar10', 'cifar100', 'imagenet'], type=str)
     parser.add_argument('--one_class_idx', help='None: multi-class, Not None: one-class',
                         default=None, type=int)
     parser.add_argument('--model', help='Model',
