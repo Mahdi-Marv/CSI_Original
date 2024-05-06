@@ -42,6 +42,7 @@ class Camelyon17(Dataset):
             node2_train = glob('/kaggle/input/camelyon17-clean/node2/train/normal/*')
 
             self.image_paths = node0_train + node1_train + node2_train
+            self.image_paths = random.sample(self.image_paths, 50000)
         else:
             if test_id == 1:
                 node0_test_normal = glob('/kaggle/input/camelyon17-clean/node0/test/normal/*')
@@ -54,7 +55,10 @@ class Camelyon17(Dataset):
                 node2_test_anomaly = glob('/kaggle/input/camelyon17-clean/node2/test/anomaly/*')
 
                 test_path_normal = node0_test_normal + node1_test_normal + node2_test_normal
+                test_path_normal = random.sample(test_path_normal, 10000)
                 test_path_anomaly = node0_test_anomaly + node1_test_anomaly + node2_test_anomaly
+                test_path_anomaly = random.sample(test_path_anomaly, 10000)
+
 
                 self.image_paths = test_path_normal + test_path_anomaly
                 self.test_label = [0] * len(test_path_normal) + [1] * len(test_path_anomaly)
@@ -66,7 +70,11 @@ class Camelyon17(Dataset):
                 node4_test_anomaly = glob('/kaggle/input/camelyon17-clean/node4/test/anomaly/*')
 
                 shifted_test_path_normal = node3_test_normal + node4_test_normal
+                shifted_test_path_normal = random.sample(shifted_test_path_normal, 10000)
+
                 shifted_test_path_anomaly = node3_test_anomaly + node4_test_anomaly
+                shifted_test_path_anomaly = random.sample(shifted_test_path_anomaly, 10000)
+
 
                 self.image_paths = shifted_test_path_normal + shifted_test_path_anomaly
                 self.test_label = [0] * len(shifted_test_path_normal) + [1] * len(shifted_test_path_anomaly)
